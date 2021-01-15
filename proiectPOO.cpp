@@ -189,8 +189,11 @@ public:
 class MosCraciun
 {
 
-public:
+private:
+    string traseu1;
+    string sageata = " -> ";
 
+public:
     int a[6][6];
     int suma = 0;
 
@@ -216,12 +219,12 @@ public:
 
         edge = 0;
 
+         int x;
+            int y;
         while (edge++ < 5)
         {
 
             int min = INT_MAX;
-            int x;
-            int y;
             for (int i = 0; i < 6; i++)
             {
                 if (visit[i])
@@ -242,9 +245,11 @@ public:
                 }
             }
             cout << e.getoras(x)  <<  " - " << e.getoras(y) << " : "<<a[x][y]<<" km"<<endl;
+            traseu1 = adunare(traseu1, e.getoras(x), sageata);
             suma+=a[x][y];
             visit[y] = true;
         }
+        traseu1 = adunare(traseu1, e.getoras(y), sageata);
     }
 
     friend class DnaCraciun;
@@ -257,6 +262,11 @@ private:
     float suma;
 public:
     DnaCraciun() {}
+
+    void afisaretraseu(MosCraciun c)
+    {
+        cout<<c.traseu1;
+    }
 
     int total(Elf e, Troll t)
     {
@@ -304,6 +314,7 @@ int main()
     cout<<endl;
     t.afisare();
     cout<<endl<<"Drumul critic: "<<p.shortest(k)<<endl;
-    cout<<endl<<"Distanta minima "<<p.suma<<" km";
+    cout<<endl<<"Distanta minima "<<p.suma<<" km"<<endl;
+    l.afisaretraseu(p);
     return 0;
 }
